@@ -1,6 +1,7 @@
 package importer
 
 import (
+	"github.com/r3boot/ircinfo/storage"
 	"strconv"
 )
 
@@ -25,6 +26,15 @@ func (m *ManagerStruct) Import(directory string) {
 
 	// Import all found logs
 	for _, logfile := range all_logs {
-		Parse(logfile)
+		ReadAndParse(logfile)
 	}
+
+	ml_size := len(storage.MaskList)
+	nl_size := len(storage.NickList)
+	ul_size := len(storage.UserList)
+	hl_size := len(storage.HostList)
+	Log.Debug("Found " + strconv.Itoa(ml_size) + " masks")
+	Log.Debug("Found " + strconv.Itoa(nl_size) + " nicknames")
+	Log.Debug("Found " + strconv.Itoa(ul_size) + " users")
+	Log.Debug("Found " + strconv.Itoa(hl_size) + " hosts")
 }

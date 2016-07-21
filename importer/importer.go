@@ -12,4 +12,5 @@ func Setup(l logger.Log) {
 	Log = l
 
 	SetupManager()
+	CompileRegexps()
 }

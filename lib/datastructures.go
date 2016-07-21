@@ -8,7 +8,7 @@ package lib
 // Entity
 type Entity struct {
 	Mask     string
-	NickName string
+	Nickname string
 	Username string
 	Hostname string
 }
