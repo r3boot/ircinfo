@@ -33,8 +33,11 @@ func (m *ManagerStruct) Import(directory string) {
 	nl_size := len(storage.NickList)
 	ul_size := len(storage.UserList)
 	hl_size := len(storage.HostList)
+	cl_size := len(storage.ChangeList)
+
 	Log.Debug("Found " + strconv.Itoa(ml_size) + " masks")
 	Log.Debug("Found " + strconv.Itoa(nl_size) + " nicknames")
 	Log.Debug("Found " + strconv.Itoa(ul_size) + " users")
 	Log.Debug("Found " + strconv.Itoa(hl_size) + " hosts")
+	Log.Debug("Found " + strconv.Itoa(cl_size) + " nickchanges")
 }

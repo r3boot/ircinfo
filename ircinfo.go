@@ -7,7 +7,6 @@ import (
 	"github.com/r3boot/ircinfo/proto"
 	"github.com/r3boot/ircinfo/storage"
 	"github.com/r3boot/rlib/logger"
-	"gopkg.in/redis.v3"
 	"os"
 )
 
@@ -25,9 +24,6 @@ var debug = flag.Bool("D", D_DEBUG, "Enable debug output")
 // Application related variables
 const OP_IMPORT string = "import"
 const OP_SEARCH string = "search"
-
-// Data storage
-var Redis *redis.Client
 
 var Log logger.Log
 
@@ -73,10 +69,6 @@ func init() {
 		}
 	}
 
-	// Initialize redis client
-	Redis = proto.NewRedisClient("jessie.dev:6379", "", 0)
-	Log.Debug("Redis client initialized")
-
 	// Initialize various submodules
 	lib.Setup(Log)
 	proto.Setup(Log)
@@ -95,6 +87,11 @@ func main() {
 		{
 			directory := flag.Arg(1)
 			importer.Manager.Import(directory)
+			storage.SaveLists()
+		}
+	case OP_SEARCH:
+		{
+			storage.LoadLists()
 		}
 	default:
 		{

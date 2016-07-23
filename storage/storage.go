@@ -23,3 +23,21 @@ func Setup(l logger.Log) {
 	HostList = make(map[string][]string, L_MAX)
 	ChangeList = make(map[string][]string, L_MAX)
 }
+
+func SaveLists() {
+	Log.Debug("Saving lists")
+	SaveChangeList()
+	SaveHostList()
+	SaveMaskList()
+	SaveNickList()
+	SaveUserList()
+}
+
+func LoadLists() {
+	Log.Debug("Loading lists")
+	LoadChangeList()
+	LoadHostList()
+	LoadMaskList()
+	LoadNickList()
+	LoadUserList()
+}
